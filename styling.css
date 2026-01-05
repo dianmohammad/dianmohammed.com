@@ -1,14 +1,11 @@
 #typing {
-  border-right: 2px solid black; /* the blinking cursor */
+  border-right: 2px solid black; /* the cursor */
   padding-right: 2px;
   font-weight: normal; /* adjust as needed */
+  animation: blink 1s step-end infinite;
 }
 
 @keyframes blink {
   0%, 50%, 100% { border-color: black; }
   25%, 75% { border-color: transparent; }
-}
-
-#typing {
-  animation: blink 1s infinite;
 }
