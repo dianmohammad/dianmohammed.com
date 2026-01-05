@@ -1,32 +1,32 @@
-const typingElement = document.getElementById("typing"); // <-- THIS IS THE LINK
-const words = ["bullying", "racism", "prejudice"]; // you can add more words here if needed
-const cursor = "|";
-
+const typingElement = document.getElementById('typing');
+const words = ["bullying.", "hatred.", "racism.", "prejudice.", "injustice."];
 let wordIndex = 0;
 let charIndex = 0;
-let typing = true;
+let deleting = false;
 
 function type() {
-    if (typing) {
-        if (charIndex <= words[wordIndex].length) {
-            typingElement.textContent = words[wordIndex].substring(0, charIndex) + cursor;
-            charIndex++;
-            setTimeout(type, 200);
-        } else {
-            typing = false;
-            setTimeout(type, 1000);
-        }
-    } else {
-        if (charIndex >= 0) {
-            typingElement.textContent = words[wordIndex].substring(0, charIndex) + cursor;
-            charIndex--;
-            setTimeout(type, 100);
-        } else {
-            typing = true;
-            wordIndex = (wordIndex + 1) % words.length;
-            setTimeout(type, 200);
-        }
+  const currentWord = words[wordIndex];
+  
+  if (!deleting) {
+    typingElement.textContent = currentWord.slice(0, charIndex + 1);
+    charIndex++;
+    if (charIndex === currentWord.length) {
+      deleting = true;
+      setTimeout(type, 1000); // pause at full word
+      return;
     }
+  } else {
+    typingElement.textContent = currentWord.slice(0, charIndex - 1);
+    charIndex--;
+    if (charIndex === 0) {
+      deleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+    }
+  }
+  
+  // Smooth typing: random delay between 80–200ms
+  const delay = deleting ? 50 : 100 + Math.random() * 100;
+  setTimeout(type, delay);
 }
 
 type();
