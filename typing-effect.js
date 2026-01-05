@@ -1,5 +1,5 @@
 const typingElement = document.getElementById("typing"); // <-- THIS IS THE LINK
-const words = ["bullying"]; // you can add more words here if needed
+const words = ["bullying", "racism", "prejudice"]; // you can add more words here if needed
 const cursor = "|";
 
 let wordIndex = 0;
