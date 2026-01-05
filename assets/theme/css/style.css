@@ -964,13 +964,15 @@ blockquote {
 	left: -2400px;
 }
 
-/* Typing effect cursor */
 .cursor {
   display: inline-block;
-  margin-left: 2px;
-  animation: blink 1s step-start infinite;
+  background-color: black;
+  width: 2px;
+  animation: blink 0.7s infinite;
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
 }
+
