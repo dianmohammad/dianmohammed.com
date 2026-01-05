@@ -1,0 +1,14 @@
+#typewriter {
+  border-right: 2px solid black; /* the blinking cursor */
+  padding-right: 2px;
+  font-weight: normal; /* adjust as needed */
+}
+
+@keyframes blink {
+  0%, 50%, 100% { border-color: black; }
+  25%, 75% { border-color: transparent; }
+}
+
+#typewriter {
+  animation: blink 1s infinite;
+}
