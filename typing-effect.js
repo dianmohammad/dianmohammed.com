@@ -1,34 +1,32 @@
-// typing-effect.js
-const words = ["bullying", "failure", "the Mandem", "destruction"];
-const textElement = document.getElementById("typing-text");
+const words = ["bullying", "oppression", "injustice"];
+const typingElement = document.getElementById("typing");
+const cursor = "|";
 
 let wordIndex = 0;
 let charIndex = 0;
-let isDeleting = false;
+let typing = true;
 
-const typingSpeed = 150;
-const deletingSpeed = 100;
-const pauseAfterWord = 800;
-
-function typeEffect() {
-  const currentWord = words[wordIndex];
-
-  if (!isDeleting) {
-    textElement.textContent = currentWord.slice(0, charIndex + 1);
-    charIndex++;
-    if (charIndex === currentWord.length) {
-      setTimeout(() => isDeleting = true, pauseAfterWord);
+function type() {
+    if (typing) {
+        if (charIndex <= words[wordIndex].length) {
+            typingElement.textContent = words[wordIndex].substring(0, charIndex) + cursor;
+            charIndex++;
+            setTimeout(type, 200); // speed of typing
+        } else {
+            typing = false;
+            setTimeout(type, 1000); // pause at the end of word
+        }
+    } else {
+        if (charIndex >= 0) {
+            typingElement.textContent = words[wordIndex].substring(0, charIndex) + cursor;
+            charIndex--;
+            setTimeout(type, 100); // speed of deleting
+        } else {
+            typing = true;
+            wordIndex = (wordIndex + 1) % words.length;
+            setTimeout(type, 200);
+        }
     }
-  } else {
-    textElement.textContent = currentWord.slice(0, charIndex - 1);
-    charIndex--;
-    if (charIndex === 0) {
-      isDeleting = false;
-      wordIndex = (wordIndex + 1) % words.length;
-    }
-  }
-
-  setTimeout(typeEffect, isDeleting ? deletingSpeed : typingSpeed);
 }
 
-typeEffect();
+type();
