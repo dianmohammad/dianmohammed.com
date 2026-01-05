@@ -1,4 +1,4 @@
-#typewriter {
+#typing {
   border-right: 2px solid black; /* the blinking cursor */
   padding-right: 2px;
   font-weight: normal; /* adjust as needed */
@@ -9,6 +9,6 @@
   25%, 75% { border-color: transparent; }
 }
 
-#typewriter {
+#typing {
   animation: blink 1s infinite;
 }

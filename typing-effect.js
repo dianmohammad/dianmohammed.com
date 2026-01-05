@@ -1,5 +1,5 @@
-const words = ["bullying", "oppression", "injustice"];
-const typingElement = document.getElementById("typing");
+const typingElement = document.getElementById("typing"); // <-- THIS IS THE LINK
+const words = ["bullying"]; // you can add more words here if needed
 const cursor = "|";
 
 let wordIndex = 0;
@@ -11,16 +11,16 @@ function type() {
         if (charIndex <= words[wordIndex].length) {
             typingElement.textContent = words[wordIndex].substring(0, charIndex) + cursor;
             charIndex++;
-            setTimeout(type, 200); // speed of typing
+            setTimeout(type, 200);
         } else {
             typing = false;
-            setTimeout(type, 1000); // pause at the end of word
+            setTimeout(type, 1000);
         }
     } else {
         if (charIndex >= 0) {
             typingElement.textContent = words[wordIndex].substring(0, charIndex) + cursor;
             charIndex--;
-            setTimeout(type, 100); // speed of deleting
+            setTimeout(type, 100);
         } else {
             typing = true;
             wordIndex = (wordIndex + 1) % words.length;
